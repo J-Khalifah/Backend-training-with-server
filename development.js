@@ -28,6 +28,8 @@ var express = require('express');
 var bodyParser = require('body-parser');
 var urlencodedParser = bodyParser.urlencoded({ extended: false })
 var app = express();
+const port= 8300;
+
 
 app.use(express.static('calculations'));
 
@@ -35,16 +37,18 @@ app.use(express.static('calculations'));
         res.sendFile( __dirname + "/" + "index.html" );
     });
     
-    app.get('/areaOfCircle',(req,res)=>{
+    app.get('/circle',(req,res)=>{
          res.sendFile( __dirname + "/calculations/" + "circle.html" );
     });
 
     app.post('/process-areaOfCircle',urlencodedParser,(req,res)=>{
-        var result = Math.PI * Math.pow(radius,2);
+        let Area = Math.PI * Math.pow(num,2);
+        let Area2 = Math.round(Area);
+        var result = parseFloat(req.body.Area.num) * parseFloat(Area2)
         res.send(`${result}`);
     });
 
-var server = app.listen(8080,()=>{
+var server = app.listen(port,()=>{
     var address = server.address().address;
     var port = server.address().port;
     console.log(`server listening on port ${address}:${port}`);

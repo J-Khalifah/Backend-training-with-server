@@ -11,9 +11,7 @@ pythagoras(2,3);
 // ******************AREA OF A CIRCLE**********************************************
 
 function areaOfCircle(radius){
-    let result = Math.PI * Math.pow(radius,2);
-    let Area2 = Math.round(Area);
-    console.log(`Area of circle = ${Area} , approximately = ${Area2}`);
+   
 }
 areaOfCircle(7);
 
