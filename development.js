@@ -1,4 +1,4 @@
-                    // creating a server without a framework
+// creating a server without a framework
 
 // const http= require('http')
 // const port= 8300
@@ -20,36 +20,43 @@
 // server.listen(port, () =>{
 //     console.log(`server listening on port ${port}`)
 // })
-    
 
-                    // creating a server with a framework(express)
 
-var express = require('express');
-var bodyParser = require('body-parser');
-var urlencodedParser = bodyParser.urlencoded({ extended: false })
-var app = express();
-const port= 8300;
+// creating a server with a framework(express)
+
+const express = require('express');
+const bodyParser = require('body-parser');
+const urlencodedParser = bodyParser.urlencoded({
+    extended: false
+})
+const app = express();
+const port = 8300;
 
 
 app.use(express.static('calculations'));
 
-    app.get('/', (req,res)=>{
-        res.sendFile( __dirname + "/" + "index.html" );
-    });
-    
-    app.get('/circle',(req,res)=>{
-         res.sendFile( __dirname + "/calculations/" + "circle.html" );
-    });
+app.get('/', (req, res) => {
+    res.sendFile(__dirname + "/" + "index.html");
+});
 
-    app.post('/process-areaOfCircle',urlencodedParser,(req,res)=>{
-        let Area = Math.PI * Math.pow(num,2);
-        let Area2 = Math.round(Area);
-        var result = parseFloat(req.body.Area.num) * parseFloat(Area2)
-        res.send(`${result}`);
-    });
+app.get('/circle', (req, res) => {
+    res.sendFile(__dirname + "/calculations/" + "circle.html");
+});
 
-var server = app.listen(port,()=>{
-    var address = server.address().address;
-    var port = server.address().port;
+app.post('/process-areaOfCircle', urlencodedParser, (req, res) => {
+    let Area = Math.PI * Math.pow(req.body.num, 2);
+    const result = (`Area of circle = ${Area}`);
+    res.send(`${result}`);
+});
+
+app.post('/process-areaOfSquare', urlencodedParser, (req, res) => {
+    let Area = parseFloat(req.body.len) * parseFloat(req.body.bre);
+    const result = (`Area of square = ${Area}`);
+    res.send(`${result}`);
+});
+
+const server = app.listen(port, () => {
+    const address = server.address().address;
+    const port = server.address().port;
     console.log(`server listening on port ${address}:${port}`);
 });

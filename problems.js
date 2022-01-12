@@ -8,12 +8,6 @@ function pythagoras(a,b){
 };
 pythagoras(2,3);
 
-// ******************AREA OF A CIRCLE**********************************************
-
-function areaOfCircle(radius){
-   
-}
-areaOfCircle(7);
 
 // ******************QUADRATIC EQUATION**********************************************
 
@@ -22,8 +16,7 @@ function quadraticEquation(a,b,c){
     let result2 = (-1 * b - Math.sqrt(Math.pow(b, 2) - (4 * a * c))) /  (2 * a);
     let ans1 = Math.round(result1);
     let ans2 = Math.round(result2);
-    console.log(`result1 = ${ans1} 
-result2 = ${ans2}`)
+    console.log(`result1 = ${ans1} result2 = ${ans2}`)
 }
 quadraticEquation(1,1,-1)
 
